@@ -1,18 +1,13 @@
 package tests;
 
 import com.codeborne.selenide.Configuration;
+import com.github.javafaker.Faker;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import page.RegistrationFormPage;
 
-public class RegistrationForm {
+public class RegistrationForm extends TestBase {
     RegistrationFormPage registrationFormPage = new RegistrationFormPage();
-
-    @BeforeAll
-    static void configuration() {
-        Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browserSize = "1920x1080";
-    }
 
     @Test
     void fillregistrationformtest() {

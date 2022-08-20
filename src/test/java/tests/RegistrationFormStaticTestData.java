@@ -2,20 +2,20 @@ package tests;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import page.RegistrationFormPage;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$;
 import static tests.TestData.*;
 
-public class RegistrationFormWithTestData extends TestBase {
+public class RegistrationFormStaticTestData extends TestBase {
 
     @Test
-    static void filldata() {
+    void filldata() {
         open("/automation-practice-form");
         executeJavaScript("$('footer').remove()");
         executeJavaScript("$('#fixedban').remove()");
@@ -61,3 +61,4 @@ public class RegistrationFormWithTestData extends TestBase {
 
 
 }
+
