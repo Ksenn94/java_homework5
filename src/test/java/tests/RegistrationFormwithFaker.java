@@ -10,68 +10,40 @@ import java.util.Locale;
 
 public class RegistrationFormwithFaker extends TestBase {
     RegistrationFormPage registrationFormPage = new RegistrationFormPage();
-    Faker faker = new Faker(new Locale("en"));
-    String firstName,
-            lastName,
-            userEmail,
-            userNumber,
-            gender,
-            userPic,
-            day,
-            month,
-            year,
-            userAddress,
-            city,
-            state,
-            subject,
-            hobby;
+    TestData2 testdata2 = new TestData2();
 
     @BeforeEach
-    void prepareTestData() {
-        firstName = faker.name().firstName();
-        lastName = faker.name().lastName();
-        userEmail = faker.internet().emailAddress();
-        gender = "Male";
-        userPic = "DSC07524.JPG";
-        userNumber = faker.phoneNumber().subscriberNumber(10);
-        day = faker.number().numberBetween(1, 28) + "";
-        month = "July";
-        userAddress = faker.address().fullAddress();
-        year = faker.number().numberBetween(2000, 2010) + "";
-        city = "NCR";
-        state = "Delhi";
-        subject = "Math";
-        hobby = "Sports";
-
+    void setup(){
+        testdata2.prepareTestData();
     }
 
     @Test
     void fillregistrationformtest() {
         registrationFormPage.openPage()
-                .setFirstName(firstName)
-                .setLastName(lastName)
-                .setEmail(userEmail)
-                .setGender(gender)
-                .setNumber(userNumber)
-                .setBirthdate(day, month, year)
-                .uploadPic(userPic)
-                .setSubject(subject)
-                .setHobby(hobby)
-                .setAddress(userAddress)
-                .setCityState(city, state)
+                .setFirstName(testdata2.firstName)
+                .setLastName(testdata2.lastName)
+                .setEmail(testdata2.userEmail)
+                .setGender(testdata2.gender)
+                .setNumber(testdata2.userNumber)
+                .setBirthdate(testdata2.day, testdata2.month, testdata2.year)
+                .uploadPic(testdata2.userPic)
+                .setSubject(testdata2.subject)
+                .setHobby(testdata2.hobby)
+                .setAddress(testdata2.userAddress)
+                .setCityState(testdata2.city, testdata2.state)
                 .submit();
 
 
         registrationFormPage.checkResultsTableVisible()
-               .checkResult("Student Name", firstName + " " + lastName)
-               .checkResult("Student Email", userEmail)
-               .checkResult("Date of Birth", day + " " + month + ","+ year)
-                .checkResult("Gender", gender)
-                .checkResult("Mobile", userNumber)
-                .checkResult("Subjects", subject)
-                .checkResult("Hobbies", hobby)
-                .checkResult("Picture", userPic)
-                .checkResult("Address", userAddress)
-                .checkResult("State and City", city + " " + state);
+               .checkResult("Student Name", testdata2.firstName + " " + testdata2.lastName)
+               .checkResult("Student Email", testdata2.userEmail)
+               .checkResult("Date of Birth", testdata2.day + " " + testdata2.month + ","+ testdata2.year)
+                .checkResult("Gender", testdata2.gender)
+                .checkResult("Mobile", testdata2.userNumber)
+                .checkResult("Subjects", testdata2.subject)
+                .checkResult("Hobbies", testdata2.hobby)
+                .checkResult("Picture", testdata2.userPic)
+                .checkResult("Address", testdata2.userAddress)
+                .checkResult("State and City", testdata2.city + " " + testdata2.state);
     }
 }
